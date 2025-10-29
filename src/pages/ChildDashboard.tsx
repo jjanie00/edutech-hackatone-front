@@ -1,8 +1,3 @@
-// 아이용 대시보드 페이지
-
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 // 가상의 아이 데이터 (실제로는 로그인된 아이 정보)
 const CHILD_INFO = {
   id: 1,
@@ -85,27 +80,21 @@ const OTHER_ACTIVITIES = [
   }
 ];
 
-export default function StudentDashBoardPage() {
-  const navigate = useNavigate();
-  const [showTeacherMode, setShowTeacherMode] = useState(false);
+interface ChildDashboardProps {
+  onSwitchToTeacher: () => void;
+}
 
+export default function ChildDashboard({ onSwitchToTeacher }: ChildDashboardProps) {
   const handleMissionClick = (mission: typeof ASSIGNED_MISSIONS[0]) => {
     if (mission.isCompleted) {
       alert(`${mission.title} 미션을 이미 완료했어요! 🎉`);
     } else {
-      // 동화 생성 페이지로 이동
-      navigate('/create-story');
+      alert(`${mission.title} 미션을 시작할까요? ✨`);
     }
   };
 
   const handleActivityClick = (activity: typeof OTHER_ACTIVITIES[0]) => {
     alert(`${activity.title}은(는) 곧 만날 수 있어요! 🚀`);
-  };
-
-  const handleSwitchToTeacher = () => {
-    setShowTeacherMode(true);
-    // 실제로는 선생님 모드 페이지로 이동
-    alert("선생님 모드로 전환합니다!");
   };
 
   const progressPercent = (CHILD_INFO.points / CHILD_INFO.nextLevelPoints) * 100;
@@ -156,6 +145,32 @@ export default function StudentDashBoardPage() {
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* 역할 전환 버튼 */}
+            <button
+              onClick={onSwitchToTeacher}
+              style={{
+                padding: '0.5rem 1rem',
+                borderRadius: '20px',
+                border: '2px solid var(--sky-blue)',
+                background: 'white',
+                color: 'var(--sky-blue)',
+                fontSize: '0.8rem',
+                fontWeight: '700',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--sky-blue)';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'white';
+                e.currentTarget.style.color = 'var(--sky-blue)';
+              }}
+            >
+              👩‍🏫 선생님 모드
+            </button>
+            
             {/* 아이 프로필 */}
             <div style={{
               display: 'flex',
@@ -203,7 +218,7 @@ export default function StudentDashBoardPage() {
             marginBottom: '0.5rem',
             letterSpacing: '-0.03em'
           }}>
-            안녕하세요, {CHILD_INFO.name}! 👋
+            안녕, {CHILD_INFO.name}! 👋
           </h1>
           <p style={{
             fontSize: '1.2rem',
