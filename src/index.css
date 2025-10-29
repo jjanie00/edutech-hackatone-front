@@ -1,6 +1,40 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 @import "tailwindcss";
 
+:root {
+  /* Primary Colors - Warm & Energetic */
+  --sunshine-yellow: #FFD93D;
+  --warm-orange: #FF8F47;
+  --sky-blue: #4A90E2;
+  --mint-green: #7ED4AD;
+  
+  /* Background & Neutral */
+  --cream-white: #FFFEF7;
+  --warm-gray: #F7F5F3;
+  --light-gray: #F0F2F5;
+  --navy-text: #2C3E50;
+  --soft-text: #6B7280;
+  
+  /* Accent Colors */
+  --coral-pink: #FF6B9D;
+  --purple-accent: #9B59B6;
+  --success-green: #10B981;
+  --error-red: #EF4444;
+  
+  /* Gradients */
+  --gradient-sunshine: linear-gradient(135deg, var(--sunshine-yellow) 0%, var(--warm-orange) 100%);
+  --gradient-sky: linear-gradient(135deg, var(--sky-blue) 0%, #6BA3F5 100%);
+  --gradient-mint: linear-gradient(135deg, var(--mint-green) 0%, #5BC29A 100%);
+  --gradient-coral: linear-gradient(135deg, var(--coral-pink) 0%, #FF8FA3 100%);
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.16);
+  --shadow-yellow: 0 8px 24px rgba(255, 217, 61, 0.3);
+  --shadow-blue: 0 8px 24px rgba(74, 144, 226, 0.3);
+}
+
 *,
 body {
   margin: 0;
@@ -10,4 +44,37 @@ body {
 
 body {
   font-family: "Pretendard", sans-serif;
+  background: var(--cream-white);
+  color: var(--navy-text);
+  line-height: 1.6;
+}
+
+/* Animation utilities */
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: var(--shadow-soft); }
+  50% { box-shadow: var(--shadow-yellow); }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
 }
