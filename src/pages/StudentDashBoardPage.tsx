@@ -151,7 +151,7 @@ export default function StudentDashBoardPage() {
               margin: 0,
               letterSpacing: '-0.02em'
             }}>
-              StoryLand
+              팅커벨
             </h1>
           </div>
           

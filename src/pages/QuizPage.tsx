@@ -136,7 +136,7 @@ export default function QuizPage() {
                 color: 'var(--navy-text)',
                 margin: 0
               }}>
-                논리 문제 풀기
+                팅커벨 - 논리 문제 풀기
               </h1>
             </div>
           </div>
@@ -337,7 +337,7 @@ export default function QuizPage() {
               color: 'var(--navy-text)',
               margin: 0
             }}>
-              논리 문제 풀기
+              팅커벨 - 논리 문제 풀기
             </h1>
           </div>
           

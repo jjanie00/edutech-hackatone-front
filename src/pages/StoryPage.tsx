@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // 이미지 import
-import scene1Image from "../Gemini_Generated_Image_fbwc1ffbwc1ffbwc.png";
-import scene2Image from "../Gemini_Generated_Image_jro21fjro21fjro2.png";
-import scene3Image from "./Gemini_Generated_Image_k5po28k5po28k5po.png";
+import scene1Image from "./scene1.png";
+import scene2Image from "./scene2.png";
+import scene3Image from "./scene3.png";
 
 // 동화 데이터
 const STORY_DATA = {
@@ -189,7 +189,7 @@ export default function StoryPage() {
               color: 'var(--navy-text)',
               margin: 0
             }}>
-              {STORY_DATA.title}
+              팅커벨 - {STORY_DATA.title}
             </h1>
           </div>
           
@@ -319,7 +319,7 @@ export default function StoryPage() {
                   잠깐만 기다려주세요 ✨
                 </p>
               </div>
-            ) : (
+            ) : scene.image ? (
               <img
                 src={scene.image}
                 alt={`장면 ${scene.id}: ${scene.title}`}
@@ -333,6 +333,31 @@ export default function StoryPage() {
                   animation: 'fadeIn 0.5s ease-in'
                 }}
               />
+            ) : (
+              <div style={{
+                width: '100%',
+                height: '350px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, var(--warm-gray) 0%, rgba(255, 255, 255, 0.9) 100%)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '2px dashed var(--light-gray)',
+                animation: 'fadeIn 0.5s ease-in'
+              }}>
+                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
+                  {scene.id === 2 ? '😔' : '😊'}
+                </div>
+                <p style={{
+                  fontSize: '1.1rem',
+                  color: 'var(--soft-text)',
+                  fontWeight: '600',
+                  textAlign: 'center'
+                }}>
+                  {scene.id === 2 ? '마음이 아픈 순간' : '다시 웃게 된 순간'}
+                </p>
+              </div>
             )}
           </div>
 

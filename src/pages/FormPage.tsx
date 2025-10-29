@@ -178,7 +178,7 @@ export default function FormPage() {
                 letterSpacing: "-0.02em",
               }}
             >
-              StoryMaker
+              팅커벨
             </h1>
           </div>
 
