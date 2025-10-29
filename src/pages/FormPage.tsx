@@ -63,6 +63,7 @@ export default function FormPage() {
     },
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showLoadingOverlay, setShowLoadingOverlay] = useState(false);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -80,6 +81,7 @@ export default function FormPage() {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
+    setShowLoadingOverlay(true);
 
     const selectedStudent = STUDENTS.find((s) => s.id === data.studentId);
 
@@ -90,10 +92,11 @@ export default function FormPage() {
       studentInfo: selectedStudent,
     });
 
-    // 로딩 시뮬레이션
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // 3초 로딩
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     setIsSubmitting(false);
+    setShowLoadingOverlay(false);
 
     // 동화 페이지로 이동
     navigate("/story");
@@ -517,6 +520,27 @@ export default function FormPage() {
                       style={{ display: "none" }}
                       {...register("selectedScenario")}
                     />
+                    {/* NEW 배지 - 왼쪽 상단 */}
+                    {scenario.id === "friendship_conflict" && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "8px",
+                          left: "8px",
+                          padding: "4px 8px",
+                          fontSize: "0.65rem",
+                          fontWeight: "800",
+                          color: "white",
+                          background: "linear-gradient(135deg, #FF6B6B, #FF8C94)",
+                          borderRadius: "6px",
+                          boxShadow: "0 2px 8px rgba(255, 107, 157, 0.4)",
+                          animation: "pulse 2s infinite",
+                          zIndex: 10,
+                        }}
+                      >
+                        NEW
+                      </div>
+                    )}
                     {/* 선택된 카드 체크 마크 */}
                     {selectedScenario === scenario.id && (
                       <div
@@ -767,8 +791,83 @@ export default function FormPage() {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
+
+          @keyframes pulse {
+            0% {
+              transform: scale(1);
+              opacity: 1;
+            }
+            50% {
+              transform: scale(1.1);
+              opacity: 0.8;
+            }
+            100% {
+              transform: scale(1);
+              opacity: 1;
+            }
+          }
         `}
       </style>
+
+      {/* 로딩 오버레이 */}
+      {showLoadingOverlay && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "20px",
+              padding: "40px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "20px",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <div
+              style={{
+                width: "80px",
+                height: "80px",
+                border: "8px solid #fff3cd",
+                borderTop: "8px solid #ffc107",
+                borderRadius: "50%",
+                animation: "spin 1s linear infinite",
+              }}
+            />
+            <div
+              style={{
+                fontSize: "24px",
+                color: "#2c3e50",
+                fontWeight: "600",
+              }}
+            >
+              동화 만드는 중...
+            </div>
+            <div
+              style={{
+                fontSize: "16px",
+                color: "#7f8c8d",
+              }}
+            >
+              마법의 이야기를 준비하고 있어요
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
