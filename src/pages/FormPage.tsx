@@ -93,7 +93,6 @@ export default function FormPage() {
     // 로딩 시뮬레이션
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    alert(`${selectedStudent?.name}을 위한 동화 생성이 완료되었습니다!`);
     setIsSubmitting(false);
 
     // 동화 페이지로 이동
