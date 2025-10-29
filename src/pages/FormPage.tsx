@@ -363,11 +363,11 @@ export default function FormPage() {
                       borderRadius: "12px",
                       border:
                         selectedStoryType === type
-                          ? "2px solid var(--sky-blue)"
+                          ? "2px solid var(--sunshine-yellow)"
                           : "2px solid var(--light-gray)",
                       background:
                         selectedStoryType === type
-                          ? "var(--gradient-sky)"
+                          ? "var(--gradient-sunshine)"
                           : "var(--warm-gray)",
                       color:
                         selectedStoryType === type
@@ -380,7 +380,7 @@ export default function FormPage() {
                         selectedStoryType === type ? "scale(1.05)" : "scale(1)",
                       boxShadow:
                         selectedStoryType === type
-                          ? "var(--shadow-blue)"
+                          ? "var(--shadow-yellow)"
                           : "none",
                     }}
                     onMouseEnter={(e) => {

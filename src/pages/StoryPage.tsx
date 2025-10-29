@@ -620,13 +620,13 @@ export default function StoryPage() {
                     padding: '1rem 2rem',
                     borderRadius: '16px',
                     border: 'none',
-                    background: isLastScene ? 'var(--gradient-coral)' : 'var(--gradient-sky)',
+                    background: isLastScene ? 'var(--gradient-coral)' : 'var(--gradient-sunshine)',
                     color: 'white',
                     fontSize: '1.1rem',
                     fontWeight: '700',
                     cursor: isQuizLoading ? 'not-allowed' : 'pointer',
                     transition: 'all 0.3s',
-                    boxShadow: 'var(--shadow-medium)'
+                    boxShadow: isLastScene ? 'var(--shadow-medium)' : 'var(--shadow-yellow)'
                   }}
                 >
                   {isLastScene ? '🧠 문제풀기!' : '➡️ 다음 장면'}
